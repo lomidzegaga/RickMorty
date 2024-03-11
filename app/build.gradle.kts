@@ -1,6 +1,9 @@
 plugins {
     alias(libs.plugins.android.aplication)
     alias(libs.plugins.kotlin)
+
+    alias(libs.plugins.hilt)
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -40,7 +43,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = "1.5.10"
     }
     packaging {
         resources {
@@ -53,8 +56,22 @@ dependencies {
 
     libs.apply {
         implementation(platform(compose.bom))
-
         implementation(material3)
+
+        // Retrofit
+        implementation(retrofit)
+        implementation(okhttp.logging)
+
+        // Hilt
+        implementation(hilt)
+        ksp(hilt.anotation)
+
+        // Gson
+        implementation(gson)
+
+        // Glide
+        implementation(glide)
+
         androidx.apply {
             implementation(core)
             implementation(lifecycle)
